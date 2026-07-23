@@ -55,10 +55,12 @@ const products = {
   },
 
   submitForm: function() {
-    const title = document.getElementById("title").value;
-    const price = document.getElementById("price").valueAsNumber;
-    const description = document.getElementById("description").value;
-    const category = document.getElementById("category").value;
+    const form = document.querySelector("form");
+
+    const title = form.title.value;
+    const price = form.price.valueAsNumber;
+    const description = form.description.value;
+    const category = form.category.value;
     const id = 0? 1 : Math.max(...this.productList.map(p => p.id)) + 1;
 
     this.productList.push({
