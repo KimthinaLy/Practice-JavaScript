@@ -1,0 +1,97 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+p{
+    margin: 0;
+}
+
+form{
+    width: 700px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;;
+}
+
+.visible-panel{
+    border: 1px solid black;
+    width: 100%;
+    max-width: 700px;
+}
+
+.list-button,
+.add-product-button{
+    color: black;
+    border: 1px solid black;
+    width: 100px;
+    padding-block:  15px;
+}
+
+.list-button{
+    background-color: goldenrod;
+}
+
+.add-product-button{
+    background-color: white;
+}
+
+.field-label{
+    font-weight: bold;
+}
+
+.list-container{
+    border: 1px solid black;
+    border-radius: 30px;
+    max-width: 700px;
+    padding-inline:20px;
+    margin: 15px;;
+}
+
+.form-container{
+    padding: 15px 60px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.form-field{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 50px;
+}
+
+.form-input{
+    padding: 8px 18px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.action-button-container{
+    display: flex;
+    justify-content: end;
+    column-gap: 10px;
+}
+
+.submit-button,
+.cancel-button{
+    color: black;
+    border: 1px solid black;
+    padding-block: 10px;
+    width: 100px;
+}
+
+.submit-button{
+    background-color: goldenrod;
+}
+
+.cancel-button{
+    background-color: green;
+}
