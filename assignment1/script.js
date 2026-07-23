@@ -64,11 +64,11 @@ const products = {
     const id = 0? 1 : Math.max(...this.productList.map(p => p.id)) + 1;
 
     this.productList.push({
-      id: id,
-      title: title,
-      price: price,
-      description: description,
-      category: category,
+      id, //equivalent to: "id: id"
+      title,
+      price,
+      description,
+      category,
     });
 
     this.refreshProductList()
