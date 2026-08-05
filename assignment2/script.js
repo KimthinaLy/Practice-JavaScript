@@ -31,6 +31,8 @@ class Circle {
 }
 
 const geometry = {
+  geoObject: null,
+
   createObject: function(shape){
     switch(shape){
       case "triangle":
