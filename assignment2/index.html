@@ -14,7 +14,7 @@
     <hr class="my-4 w-full border-t border-gray-300">
     <div class="flex flex-row py-4">
       <label for="options" >Choose a shape:</label>
-      <select class="text-blue-600" id="options" name="options" onchange="showInputForm()">
+      <select class="text-blue-600" id="options" name="options" onchange="handleOptionChange();">
         <option class="text-blue-600" value="triangle">Triangle</option>
         <option class="text-blue-600" value="rectangle">Rectangle</option>
         <option class="text-blue-600" value="circle">Circle</option>
@@ -30,6 +30,12 @@
   </div>
   
   <script>
+    function handleOptionChange(){
+      resetShapeDiv(document.getElementById("shape"));
+      document.getElementById("result").innerText = "";
+      showInputForm();
+    }
+
     function showInputForm(){
       const selectedShape = document.getElementById("options").value;
 
@@ -43,7 +49,7 @@
       switch(selectedShape){
         case "triangle":
           htmlForm += `
-              <label for="base">Base:</label>
+              <label for="width">Width:</label>
               <input type="number" min="0" id="width" name="width" class="border p-1 mb-2" placeholder="Enter width in cm">
               <label for="height">Height:</label>
               <input type="number" min="0" id="height" name="height" class="border p-1 mb-2" placeholder="Enter height in cm">
@@ -83,11 +89,7 @@
     function calculateArea(){
       const selectedShape = document.getElementById("options").value;
 
-      const dimensions = {
-        width: document.getElementById("width") ? parseFloat(document.getElementById("width").value) : 0,
-        height: document.getElementById("height") ? parseFloat(document.getElementById("height").value) : 0,
-        radius: document.getElementById("radius") ? parseFloat(document.getElementById("radius").value) : 0,
-      };
+      const dimensions = getInputValue();
 
       const area = geometry.calculateArea(selectedShape, dimensions);
 
@@ -98,16 +100,12 @@
       const shapeDiv = document.getElementById("shape");
       const selectedShape = document.getElementById("options").value;
 
-      const dimensions = {
-        width: document.getElementById("width") ? parseFloat(document.getElementById("width").value) : 0,
-        height: document.getElementById("height") ? parseFloat(document.getElementById("height").value) : 0,
-        radius: document.getElementById("radius") ? parseFloat(document.getElementById("radius").value) : 0,
-      };
+      const dimensions = getInputValue();
 
       expandDimensions(dimensions);
       
        // Reset previous styles
-      resetShapeDiv();
+      resetShapeDiv(shapeDiv);
       if(selectedShape === "triangle"){
         if(!dimensions.width || !dimensions.height){
           alert("Please enter base and height");
@@ -142,38 +140,49 @@
       else{
         alert("Invalid shape selected");
       }
+    }
 
-      //helper function to expand dimensions if they are too small
-      function expandDimensions(dimensions){
-        const minDimension = 80; 
-        const maxDimension = 700; 
+      //===================== HELPER FUNCTIONS =====================
+    function getInputValue(){
+      const dimensions = {
+        width: document.getElementById("width") ? parseFloat(document.getElementById("width").value) : 0,
+        height: document.getElementById("height") ? parseFloat(document.getElementById("height").value) : 0,
+        radius: document.getElementById("radius") ? parseFloat(document.getElementById("radius").value) : 0,
+      };
+      return dimensions;
+    }
 
-        for (let key in dimensions) {
-          if (dimensions[key] !== 0) {
-            if (dimensions[key] < minDimension) {
-              dimensions[key] = minDimension;
-            } else if (dimensions[key] > maxDimension) {
-              dimensions[key] = maxDimension;
-            }
+    //expand dimensions if they are too small to draw
+    function expandDimensions(dimensions){
+      const minDimension = 80; 
+      const maxDimension = 700; 
+
+      for (let key in dimensions) {
+        if (dimensions[key] !== 0) {
+          if (dimensions[key] < minDimension) {
+            dimensions[key] = minDimension;
+          } else if (dimensions[key] > maxDimension) {
+            dimensions[key] = maxDimension;
           }
         }
       }
-
-      //helper function to reset the shape div styles
-      function resetShapeDiv(){
-        shapeDiv.style.width = "0px";
-        shapeDiv.style.height = "0px";
-
-        shapeDiv.style.backgroundColor = "";
-        shapeDiv.style.borderRadius = "";
-
-        shapeDiv.style.border = "";
-        shapeDiv.style.borderLeft = "";
-        shapeDiv.style.borderRight = "";
-        shapeDiv.style.borderTop = "";
-        shapeDiv.style.borderBottom = "";
-      }
     }
+
+    //reset the shape div styles
+    function resetShapeDiv(shapeDiv){
+      shapeDiv.style.width = "0px";
+      shapeDiv.style.height = "0px";
+
+      shapeDiv.style.backgroundColor = "";
+      shapeDiv.style.borderRadius = "";
+
+      shapeDiv.style.border = "";
+      shapeDiv.style.borderLeft = "";
+      shapeDiv.style.borderRight = "";
+      shapeDiv.style.borderTop = "";
+      shapeDiv.style.borderBottom = "";
+    }
+  
   </script>
 </body>
 </html>
