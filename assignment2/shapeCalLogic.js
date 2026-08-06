@@ -5,7 +5,7 @@ class Triangle {
   }
   
   area() {
-    return (this.width * this.height) / 2;
+    return ((this.width * this.height) / 2).toFixed(2);
   }
 }
 
@@ -16,7 +16,7 @@ class Rectangle {
   }
 
   area(){
-    return this.width * this.height;
+    return (this.width * this.height).toFixed(2);
   }
 }
 
@@ -26,7 +26,7 @@ class Circle {
   }
 
   area() {
-    return Math.PI * this.radius * this.radius;
+    return (Math.PI * this.radius * this.radius).toFixed(2);
   }
 }
 
