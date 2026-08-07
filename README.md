@@ -9,3 +9,4 @@
 - A simple shape area calculation and drawing application built with HTML, Tailwind CSS, and JavaScript.
 - Feature includes: choose shape option, then input dimension of that selected shape. Output are: "draw shape" and "calculate area" of that selected shape.
 - Input form display dynamically according to shape option
+- The shape is drawn proportionally to the input but with min and max pixel range to prevent too big or too large size.
